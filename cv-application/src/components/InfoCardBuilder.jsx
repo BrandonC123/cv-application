@@ -27,11 +27,29 @@ class InfoCardBuilder extends Component {
             }
         });
     };
+    renderButton = () => {
+        if (this.props.multiple) {
+            return (
+                <button
+                    type="button"
+                    className="action-btn"
+                    onClick={() => {
+                        this.props.addNewSection();
+                    }}
+                >
+                    Add
+                </button>
+            );
+        }
+    };
     render() {
         const { cardTitle } = this.props;
         return (
             <form className="form column">
-                <h2 className="card-title">{cardTitle}</h2>
+                <div className="divider row">
+                    <h2 className="card-title">{cardTitle}</h2>
+                    {this.renderButton()}
+                </div>
                 {this.renderInputs()}
             </form>
         );

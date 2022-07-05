@@ -23,7 +23,7 @@ function App() {
         [
             {
                 title: "Position",
-                id: uniqid() + " position",
+                id: uniqid(),
                 type: "text",
                 value: "",
             },
@@ -61,6 +61,7 @@ function App() {
         let tempArray2 = Array.from(expInfoArray);
         tempArray2.forEach((array) => {
             array.forEach((item) => {
+                console.log(item);
                 item.value = document.getElementById(item.id).value;
             });
         });
@@ -77,15 +78,12 @@ function App() {
             { title: "Company", id: uniqid(), type: "text", value: "" },
             { title: "City", id: uniqid(), type: "text", value: "" },
         ];
+        // Add new array and component for a new experience section to fill out
         setExpInfoArray((old) => [...old, tempArray]);
         setExpInfoCards((old) => [
             ...old,
-            <InfoCardBuilder
-                cardTitle={"Experience"}
-                inputArray={expInfoArray[expInfoArray.length - 1]}
-            />,
+            <InfoCardBuilder cardTitle={"Experience"} inputArray={tempArray} />,
         ]);
-        // console.log(expInfoArray);
     }
     return (
         <div className="App">
@@ -100,7 +98,20 @@ function App() {
                     cardTitle={"Education"}
                     inputArray={educationArray}
                 />
-                <button onClick={() => addNewExpSection()}>Submit</button>
+                <button
+                    className="action-btn"
+                    onClick={() => {
+                        document
+                            .querySelector(".info-card-container")
+                            .classList.add("hide");
+                        document
+                            .querySelector(".view-container")
+                            .classList.remove("hide");
+                        getAllInputValues();
+                    }}
+                >
+                    Submit
+                </button>
             </div>
             <div className="view-container container hide">
                 <View inputValues={allInputs} expInfoArray={expInfoArray} />
