@@ -1,0 +1,148 @@
+@import url("https://fonts.googleapis.com/css2?family=Mukta&display=swap");
+
+:root {
+    --max-content-size: 600px;
+}
+
+html,
+body {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: lightgray;
+}
+
+* {
+    box-sizing: border-box;
+    font-family: "Roboto", sans-serif;
+}
+
+img {
+    max-width: 100%;
+}
+
+.container {
+    width: 65%;
+    margin: 0 auto;
+}
+
+.row {
+    display: flex;
+}
+
+.column {
+    display: flex;
+    flex-direction: column;
+}
+
+.form {
+    gap: 10px;
+    margin: 0 auto 1.5em auto;
+}
+
+.form > input,
+.form > textarea {
+    border: 1px solid lightgray;
+    border-radius: 0.25em;
+    padding: 0.25em;
+}
+
+.show {
+    display: block;
+}
+
+.hide {
+    display: none;
+}
+
+.header {
+    align-items: center;
+    width: 100%;
+    top: 0;
+    margin-bottom: 1em;
+    position: sticky;
+    background-color: black;
+    color: white;
+    padding: 1.5em;
+}
+
+.header-title {
+    position: absolute;
+}
+
+header > nav {
+    margin: 0 auto;
+}
+
+nav > li {
+    list-style: none;
+}
+
+li > button {
+    font-size: 1.15rem;
+    font-weight: 600;
+    border: none;
+    background-color: transparent;
+    color: white;
+    text-decoration: none;
+}
+
+button:hover {
+    opacity: 0.65;
+}
+
+.action-btn {
+    align-self: center;
+    border: 2px solid blue;
+    border-radius: 100px;
+    font-weight: bold;
+    background-color: transparent;
+    color: blue;
+    padding: 0.5em 1.5em;
+}
+
+.info-card-container,
+.view-container {
+    margin-bottom: 1em;
+    box-shadow: 0 0 8px gray;
+}
+
+.info-card-container {
+    border-radius: 1em;
+    background-color: white;
+    padding: 2em 0;
+}
+
+.info-card-content {
+    margin: 0 auto;
+    width: 60%;
+    max-width: var(--max-content-size);
+}
+
+.card-title {
+    color: gray;
+}
+
+.view-container {
+    background-color: white;
+    padding: 2em;
+}
+
+.left-column {
+    width: 25%;
+}
+
+.right-column {
+    width: 70%;
+    margin: 0 0 0 auto;
+}
+
+.personal-information {
+    justify-content: space-between;
+}
+
+.divider {
+    gap: 10px;
+}
