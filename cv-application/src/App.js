@@ -21,7 +21,12 @@ function App() {
     ]);
     const [expInfoArray, setExpInfoArray] = useState([
         [
-            { title: "Position", id: uniqid(), type: "text", value: "" },
+            {
+                title: "Position",
+                id: uniqid() + " position",
+                type: "text",
+                value: "",
+            },
             { title: "Company", id: uniqid(), type: "text", value: "" },
             { title: "City", id: uniqid(), type: "text", value: "" },
         ],
@@ -38,6 +43,8 @@ function App() {
     ]);
     const [expInfoCards, setExpInfoCards] = useState([
         <InfoCardBuilder
+            multiple={true}
+            addNewSection={addNewExpSection}
             cardTitle={"Experience"}
             inputArray={expInfoArray[0]}
         />,
@@ -61,12 +68,24 @@ function App() {
     }
     function addNewExpSection() {
         const tempArray = [
-            { title: "Position", id: uniqid(), type: "text", value: "" },
+            {
+                title: "Position",
+                id: uniqid(),
+                type: "text",
+                value: "",
+            },
             { title: "Company", id: uniqid(), type: "text", value: "" },
             { title: "City", id: uniqid(), type: "text", value: "" },
         ];
-        setExpInfoArray([...expInfoArray, tempArray]);
-        console.log(expInfoArray);
+        setExpInfoArray((old) => [...old, tempArray]);
+        setExpInfoCards((old) => [
+            ...old,
+            <InfoCardBuilder
+                cardTitle={"Experience"}
+                inputArray={expInfoArray[expInfoArray.length - 1]}
+            />,
+        ]);
+        // console.log(expInfoArray);
     }
     return (
         <div className="App">
