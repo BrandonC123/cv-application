@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import avatar from "../img/avatar-icon.svg";
+import uniqid from "uniqid";
 
 class View extends Component {
     constructor(props) {
@@ -7,6 +8,7 @@ class View extends Component {
         this.state = {};
     }
     fillValues = () => {
+        // console.log(this.props.expInfoArray);
         this.props.inputValues.forEach((input) => {
             if (input.value !== "") {
                 document.querySelector(`.${input.id}`).textContent =
@@ -14,11 +16,21 @@ class View extends Component {
             }
         });
     };
+    displayExpCards = () => {
+        const expInfoArray = this.props.expInfoArray;
+        return expInfoArray.map((expArray) => {
+            return expArray.map((item) => {
+                if (item.value !== "") {
+                    return <p key={uniqid()}>{item.value}</p>;
+                }
+            });
+        });
+    };
     render() {
         this.fillValues();
         return (
             <div className="row">
-                <section className="left-column">
+                <section className="left-column divider column">
                     <img src={avatar} alt="avatar-icon" />
                     <div className="description">
                         Lorem ipsum dolor sit amet consectetur adipisicing elit.
@@ -33,7 +45,7 @@ class View extends Component {
                             <h1 className="first-name">John</h1>
                             <h1 className="last-name">Doe</h1>
                         </div>
-                        <div className="divider column">
+                        <div className="column">
                             <p className="address">123 Seasme Street</p>
                             <p className="phone-number">1800-21343</p>
                             <p className="email">johndoe@gmail.com</p>
@@ -41,9 +53,7 @@ class View extends Component {
                     </div>
                     <div className="experience-content-container">
                         <h3>Experience:</h3>
-                        <p className="position">Frontend Developer</p>
-                        <p className="company">Google</p>
-                        <p className="work-city">Mountain View</p>
+                        {this.displayExpCards()}
                     </div>
                     <div className="education-content-container">
                         <h3>Education:</h3>
@@ -62,13 +72,3 @@ class View extends Component {
 }
 
 export default View;
-
-// {
-//     inputValues[
-//         inputValues
-//             .map((input) => {
-//                 return input.id;
-//             })
-//             .indexOf("first-name")
-//     ].value
-// }

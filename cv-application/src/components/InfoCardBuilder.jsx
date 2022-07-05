@@ -1,10 +1,7 @@
 import React, { Component } from "react";
+import uniqid from "uniqid";
 
 class InfoCardBuilder extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {};
-    }
     renderInputs = () => {
         let tempArray = Array.from(this.props.inputArray);
         // Shift temp array to get rid of title
@@ -12,6 +9,7 @@ class InfoCardBuilder extends Component {
             if (inputContent.type !== "textarea") {
                 return (
                     <input
+                        key={uniqid()}
                         type={inputContent.type}
                         placeholder={inputContent.title}
                         id={inputContent.id}
@@ -20,6 +18,7 @@ class InfoCardBuilder extends Component {
             } else {
                 return (
                     <textarea
+                        key={uniqid()}
                         placeholder={inputContent.title}
                         id={inputContent.id}
                     ></textarea>

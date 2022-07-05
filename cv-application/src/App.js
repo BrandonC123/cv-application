@@ -1,9 +1,9 @@
 import { useState } from "react";
-import "./App.css";
 import Header from "./components/Header";
 import InfoCardBuilder from "./components/InfoCardBuilder";
 import View from "./components/View";
 import uniqid from "uniqid";
+import "./styles/style.css";
 
 function App() {
     const [personalInfoArray, setPersonalInfoArray] = useState([
@@ -61,7 +61,6 @@ function App() {
         let tempArray2 = Array.from(expInfoArray);
         tempArray2.forEach((array) => {
             array.forEach((item) => {
-                console.log(item);
                 item.value = document.getElementById(item.id).value;
             });
         });
@@ -88,33 +87,48 @@ function App() {
     return (
         <div className="App">
             <Header getAllInputValues={getAllInputValues} />
-            <div className="info-card-container container">
-                <InfoCardBuilder
-                    cardTitle={"Personal Information"}
-                    inputArray={personalInfoArray}
-                />
-                {expInfoCards}
-                <InfoCardBuilder
-                    cardTitle={"Education"}
-                    inputArray={educationArray}
-                />
+            <section className="info-card-container container">
+                <div className="info-card-content">
+                    <InfoCardBuilder
+                        cardTitle={"Personal Information"}
+                        inputArray={personalInfoArray}
+                    />
+                    {expInfoCards}
+                    <InfoCardBuilder
+                        cardTitle={"Education"}
+                        inputArray={educationArray}
+                    />
+                    <button
+                        className="action-btn"
+                        onClick={() => {
+                            document
+                                .querySelector(".info-card-container")
+                                .classList.add("hide");
+                            document
+                                .querySelector(".view-container")
+                                .classList.remove("hide");
+                            getAllInputValues();
+                        }}
+                    >
+                        Submit
+                    </button>
+                </div>
+            </section>
+            <div className="view-container container hide">
+                <View inputValues={allInputs} expInfoArray={expInfoArray} />
                 <button
-                    className="action-btn"
                     onClick={() => {
                         document
                             .querySelector(".info-card-container")
-                            .classList.add("hide");
+                            .classList.remove("hide");
                         document
                             .querySelector(".view-container")
-                            .classList.remove("hide");
-                        getAllInputValues();
+                            .classList.add("hide");
                     }}
+                    className="action-btn"
                 >
-                    Submit
+                    Back
                 </button>
-            </div>
-            <div className="view-container container hide">
-                <View inputValues={allInputs} expInfoArray={expInfoArray} />
             </div>
         </div>
     );
