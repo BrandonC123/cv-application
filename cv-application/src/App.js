@@ -9,7 +9,7 @@ function App() {
     useEffect(() => {
         fillValue();
     });
-    // Refill values of inputs when component is re-rendered. 
+    // Refill values of inputs when component is re-rendered.
     function fillValue() {
         let tempArray = Array.from(allInputs);
         tempArray.forEach((item) => {
@@ -93,6 +93,8 @@ function App() {
             ...old,
             <InfoCardBuilder cardTitle={"Experience"} inputArray={tempArray} />,
         ]);
+        getAllInputValues()
+        fillValue();
     }
     return (
         <div className="App">
