@@ -16,6 +16,7 @@ class Header extends Component {
                                     .querySelector(".view-container")
                                     .classList.add("hide");
                             }}
+                            type="button"
                             className="build-btn"
                         >
                             Build
@@ -32,6 +33,7 @@ class Header extends Component {
                                     .classList.remove("hide");
                                 this.props.getAllInputValues();
                             }}
+                            type="button"
                             className="link-btn"
                         >
                             View

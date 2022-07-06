@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Header from "./components/Header";
 import InfoCardBuilder from "./components/InfoCardBuilder";
 import View from "./components/View";
@@ -6,6 +6,16 @@ import uniqid from "uniqid";
 import "./styles/style.css";
 
 function App() {
+    useEffect(() => {
+        fillValue();
+    });
+    // Refill values of inputs when component is re-rendered. 
+    function fillValue() {
+        let tempArray = Array.from(allInputs);
+        tempArray.forEach((item) => {
+            document.getElementById(item.id).value = item.value;
+        });
+    }
     const [personalInfoArray, setPersonalInfoArray] = useState([
         { title: "First Name", id: "first-name", type: "text", value: "" },
         { title: "Last Name", id: "last-name", type: "text", value: "" },
@@ -125,6 +135,7 @@ function App() {
                             .querySelector(".view-container")
                             .classList.add("hide");
                     }}
+                    type="button"
                     className="action-btn"
                 >
                     Back
