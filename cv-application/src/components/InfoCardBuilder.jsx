@@ -1,9 +1,8 @@
-import React, { Component } from "react";
 import uniqid from "uniqid";
 
-class InfoCardBuilder extends Component {
-    renderInputs = () => {
-        let tempArray = Array.from(this.props.inputArray);
+const InfoCardBuilder = (props) => {
+    const renderInputs = () => {
+        let tempArray = Array.from(props.inputArray);
         // Shift temp array to get rid of title
         return tempArray.map((inputContent) => {
             if (inputContent.type !== "textarea") {
@@ -26,14 +25,14 @@ class InfoCardBuilder extends Component {
             }
         });
     };
-    renderButton = () => {
-        if (this.props.multiple) {
+    const renderButton = () => {
+        if (props.multiple) {
             return (
                 <button
                     type="button"
                     className="action-btn"
                     onClick={() => {
-                        this.props.addNewSection();
+                        props.addNewSection();
                     }}
                 >
                     Add
@@ -41,18 +40,15 @@ class InfoCardBuilder extends Component {
             );
         }
     };
-    render() {
-        const { cardTitle } = this.props;
-        return (
-            <form className="form column">
-                <div className="divider row">
-                    <h2 className="card-title">{cardTitle}</h2>
-                    {this.renderButton()}
-                </div>
-                {this.renderInputs()}
-            </form>
-        );
-    }
-}
+    return (
+        <form className="form column">
+            <div className="divider row">
+                <h2 className="card-title">{props.cardTitle}</h2>
+                {renderButton()}
+            </div>
+            {renderInputs()}
+        </form>
+    );
+};
 
 export default InfoCardBuilder;
